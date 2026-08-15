@@ -18,12 +18,6 @@ func start_moving(initial_speed):
 	print("start_moving: " + initial_speed)
 	cat_speed = initial_speed
 
-func update_cat_ui():
-	#called by main to update UI
-	print("update cat called")
-	if game:
-		game.update_ui()
-
 # cat movement
 func _process(delta: float):
 	if cat_speed > 0:
