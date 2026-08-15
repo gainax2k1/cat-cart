@@ -1,0 +1,63 @@
+[gd_scene format=4 uid="uid://biri6kwjr100a"]
+
+[ext_resource type="PackedScene" uid="uid://ccye7a0xdcj46" path="res://scene/cat.tscn" id="1_5kiuu"]
+[ext_resource type="Script" uid="uid://vxviwotm8wlv" path="res://scripts/game_manager.gd" id="1_xwcet"]
+[ext_resource type="Texture2D" uid="uid://c8k5vf3ul2mhs" path="res://assets/sprites/ground_measured-Sheet.png" id="2_33cqm"]
+[ext_resource type="Texture2D" uid="uid://dn2xa0do5kyaq" path="res://assets/sprites/ground_plain-Sheet.png" id="3_xwcet"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1ry8"]
+texture = ExtResource("2_33cqm")
+texture_region_size = Vector2i(64, 16)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -8, 32, -8, 32, 8, -32, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlg7c"]
+texture = ExtResource("3_xwcet")
+texture_region_size = Vector2i(64, 16)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -8, 32, -8, 32, 8, -32, 8)
+
+[sub_resource type="TileSet" id="TileSet_ga5kc"]
+tile_size = Vector2i(64, 16)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_p1ry8")
+sources/1 = SubResource("TileSetAtlasSource_xlg7c")
+
+[node name="game" type="Node2D" unique_id=1273546714]
+
+[node name="game" type="Node" parent="." unique_id=304573520]
+unique_name_in_owner = true
+script = ExtResource("1_xwcet")
+
+[node name="cat" parent="game" unique_id=982767844 instance=ExtResource("1_5kiuu")]
+position = Vector2(-24, 0)
+
+[node name="Camera2D" type="Camera2D" parent="game/cat" unique_id=398515756]
+position = Vector2(23, 1)
+zoom = Vector2(4, 4)
+
+[node name="MeterBackground" type="ColorRect" parent="game" unique_id=1357299445]
+offset_left = 82.0
+offset_top = -70.0
+offset_right = 122.0
+offset_bottom = -30.0
+
+[node name="MeterFill" type="ColorRect" parent="game" unique_id=314212905]
+offset_left = 83.0
+offset_top = -70.0
+offset_right = 123.0
+offset_bottom = -30.0
+
+[node name="DistanceLabel" type="Label" parent="game" unique_id=2092454316]
+offset_left = 31.0
+offset_top = -71.0
+offset_right = 71.0
+offset_bottom = -48.0
+
+[node name="ground" type="TileMapLayer" parent="." unique_id=1141089749]
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAD//wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAbAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAdAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAjAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_ga5kc")
