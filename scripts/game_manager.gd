@@ -18,15 +18,11 @@ var cat_speed = 0
 
 signal cat_stopped
 
-
 # Cat ref
 @onready var cat = $cat
 
-# UI elements
-@onready var meter_background = $MeterBackground
-@onready var meter_fill = $MeterFill
+# meter ref
 @onready var distance_label = $DistanceLabel
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,9 +36,8 @@ func _ready() -> void:
 	
 	#setup cat
 	
-	#cat.connect("cat_stopped", self, "_on_cat_stopped")
+	cat.connect("cat_stopped", _on_cat_stopped)
 	
-		
 	# Start charging
 	is_charging = true
 	
@@ -51,17 +46,17 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		var mouse_pos = event.position
+		#var mouse_pos = event.position
 	
 		# Check if the meter area was clicked to charge
-		var meter_rect = Rect2(METER_MARGIN, 200, METER_WIDTH, meter_height)
-		if meter_rect.has_point(mouse_pos):
+		if $charge.pressed:
+			print("charge button pressed.")
 			charge_meter()
 			return
 			
 		# Check if the car was clicked to release
-		
-		if cat.get_global_rect().has_point(mouse_pos):
+		if $release.pressed:
+			print("release button pressed.")
 			release_cat()
 			return
 
@@ -76,8 +71,8 @@ func _process(delta: float) -> void:
 		
 func update_ui():
 	# Update meter fill
-	meter_fill.modulate = METER_COLOR
-	meter_fill.scale = Vector2(meter, 1)
+	#meter_fill.modulate = METER_COLOR
+	#meter_fill.scale = Vector2(meter, 1)
 	
 	# Update distance label
 	distance_label.text = "Distance: " + str(int(distance_traveled)) + " px"
@@ -98,6 +93,7 @@ func charge_meter():
 		cat.update_cat_ui()
 
 func _on_cat_stopped():
+	print("_on_cat_stopped called")
 	is_moving = false  # Update the is_moving variable
 
 func release_cat():
@@ -107,6 +103,7 @@ func release_cat():
 		
 		# Calculate initial speed based on meter percentage
 		cat_speed = (meter / max_meter) * max_speed
+		print("cat_speed" + cat_speed)
 		
 		# Start the car moving
 		cat.start_moving(cat_speed)
@@ -121,6 +118,7 @@ func update_cat_position(delta):
 		var screen_width = 10000 #MAGIC IS BAD!! TESTING FOR END OF ROAD
 		
 		if new_position.x > screen_width:
+			print("update_cat failed to screen_width")
 			is_moving = false
 			is_charging = true
 			cat_speed = 0
@@ -138,6 +136,7 @@ func update_cat_position(delta):
 		
 		# Recalculate speed based on remaining meter
 		cat_speed = (meter / max_meter) * max_speed
+		print("new cat_speed: " + cat_speed)
 			
 		# Update the UI
 		update_ui()

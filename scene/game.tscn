@@ -39,23 +39,24 @@ position = Vector2(-24, 0)
 position = Vector2(23, 1)
 zoom = Vector2(4, 4)
 
-[node name="MeterBackground" type="ColorRect" parent="game" unique_id=1357299445]
-offset_left = 82.0
-offset_top = -70.0
-offset_right = 122.0
-offset_bottom = -30.0
-
-[node name="MeterFill" type="ColorRect" parent="game" unique_id=314212905]
-offset_left = 83.0
-offset_top = -70.0
-offset_right = 123.0
-offset_bottom = -30.0
-
 [node name="DistanceLabel" type="Label" parent="game" unique_id=2092454316]
 offset_left = 31.0
 offset_top = -71.0
 offset_right = 71.0
 offset_bottom = -48.0
+
+[node name="charge" type="Button" parent="game" unique_id=991398114]
+offset_left = -124.0
+offset_top = -64.0
+offset_right = -59.0
+offset_bottom = -33.0
+text = "charge!"
+
+[node name="release" type="Button" parent="game" unique_id=750383420]
+offset_left = -123.0
+offset_top = -31.0
+offset_right = -54.0
+text = "release!"
 
 [node name="ground" type="TileMapLayer" parent="." unique_id=1141089749]
 position = Vector2(1, 0)
