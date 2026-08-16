@@ -1,10 +1,13 @@
 extends Node2D
 
 @export var game: Node
+@onready var _animated_sprite = $AnimatedSprite2D
 
-var cat_speed = 0
+const START_POS = Vector2(0,0)
 
-signal cat_stopped
+var charged_energy = 0.0
+var distance_traveled = 0.0
+var speed = 0.0
 
 func _ready():
 	# get ref from main game
@@ -12,23 +15,14 @@ func _ready():
 		game = get_parent()
 	
 	# set starting position
-	position = Vector2(0,0)
-
-func start_moving(initial_speed):
-	print("start_moving: " + initial_speed)
-	cat_speed = initial_speed
+	position = START_POS
 
 # cat movement
 func _process(delta: float):
-	if cat_speed > 0:
-		print("cat speed: " + cat_speed)
-		global_position.x += cat_speed * delta
+	_animated_sprite.play("cat-blink")
 		
-		#update dist traveled
-		if game:
-			game.distance_traveled += cat_speed * delta
-			#check for stopped
-			if cat_speed <= 0:
-				print("cat stopped")
-				emit_signal("cat_stopped")
-				
+	if game.is_moving:
+		_animated_sprite.play("cat-bob")
+	speed = speed * game.ratio
+	game.update_cat_position(delta)
+	game.update_ui()

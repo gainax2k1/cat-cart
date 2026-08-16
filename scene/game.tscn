@@ -26,6 +26,8 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_p1ry8")
 sources/1 = SubResource("TileSetAtlasSource_xlg7c")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ga5kc"]
+
 [node name="game" type="Node2D" unique_id=1273546714]
 
 [node name="game" type="Node" parent="." unique_id=304573520]
@@ -39,11 +41,19 @@ position = Vector2(-24, 0)
 position = Vector2(23, 1)
 zoom = Vector2(4, 4)
 
-[node name="DistanceLabel" type="Label" parent="game" unique_id=2092454316]
-offset_left = 31.0
-offset_top = -71.0
-offset_right = 71.0
-offset_bottom = -48.0
+[node name="DistanceLabel" type="Label" parent="game/cat/Camera2D" unique_id=2092454316]
+offset_left = -88.0
+offset_top = 26.0
+offset_right = 88.0
+offset_bottom = 49.0
+text = "DISTANCE"
+
+[node name="ChargeLabel" type="Label" parent="game/cat/Camera2D" unique_id=1625627295]
+offset_left = -57.0
+offset_top = -59.0
+offset_right = 8.0
+offset_bottom = -36.0
+text = "CHARGE"
 
 [node name="charge" type="Button" parent="game" unique_id=991398114]
 offset_left = -124.0
@@ -62,3 +72,9 @@ text = "release!"
 position = Vector2(1, 0)
 tile_map_data = PackedByteArray("AAD//wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAbAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAdAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAjAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ga5kc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1630316520]
+shape = SubResource("WorldBoundaryShape2D_ga5kc")
+
+[connection signal="pressed" from="game/charge" to="game" method="_on_charge_pressed"]
+[connection signal="pressed" from="game/release" to="game" method="_on_release_pressed"]

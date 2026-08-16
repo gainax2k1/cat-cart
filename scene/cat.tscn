@@ -51,5 +51,6 @@ script = ExtResource("1_f23pw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1261951668]
 position = Vector2(-1, -11)
 sprite_frames = SubResource("SpriteFrames_ga5kc")
-animation = &"cat-blink"
+animation = &"cat-bob"
 autoplay = "cat-blink"
+frame_progress = 0.6369879
