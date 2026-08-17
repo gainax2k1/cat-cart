@@ -5,24 +5,20 @@ extends Node2D
 
 const START_POS = Vector2(0,0)
 
-var charged_energy = 0.0
+#var charged_energy = 0.0
 var distance_traveled = 0.0
 var speed = 0.0
 
 func _ready():
 	# get ref from main game
 	if not game:
-		game = get_parent()
-	
-	# set starting position
+		game = get_parent()	
 	position = START_POS
 
-# cat movement
 func _process(delta: float):
-	_animated_sprite.play("cat-blink")
-		
-	if game.is_moving:
+	if not game.is_moving:
+		_animated_sprite.play("cat-blink")
+	else:
 		_animated_sprite.play("cat-bob")
-	speed = speed * game.ratio
 	game.update_cat_position(delta)
 	game.update_ui()
