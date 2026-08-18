@@ -16,9 +16,14 @@ func _ready():
 	position = START_POS
 
 func _process(delta: float):
-	if not game.is_moving:
+	if game.is_moving:
+		_animated_sprite.play("cat-bob")	
+
+	if game.is_charging:
 		_animated_sprite.play("cat-blink")
-	else:
-		_animated_sprite.play("cat-bob")
+		
 	game.update_cat_position(delta)
 	game.update_ui()
+
+
+	
