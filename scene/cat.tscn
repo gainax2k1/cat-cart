@@ -52,4 +52,4 @@ script = ExtResource("1_f23pw")
 position = Vector2(-27, -11)
 sprite_frames = SubResource("SpriteFrames_ga5kc")
 animation = &"cat-bob"
-frame_progress = 0.8371864
+frame_progress = 0.080925606

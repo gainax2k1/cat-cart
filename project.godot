@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://djb3y5pg0ygf4"
 window/canvas_textures/default_texture_filter=0
 
 [physics]
