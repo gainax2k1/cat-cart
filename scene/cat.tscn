@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cixstf14rr3qb" path="res://assets/sprites/cat_cart_blink-Sheet.png" id="1_5rbhi"]
 [ext_resource type="Script" uid="uid://dqfm2f3ne8kci" path="res://scripts/cat.gd" id="1_f23pw"]
 [ext_resource type="Texture2D" uid="uid://ea1vyry8w0im" path="res://assets/sprites/cat_cart-Sheet.png" id="2_f23pw"]
+[ext_resource type="Texture2D" uid="uid://cgsfak6jwlyi1" path="res://assets/sprites/cat_cart-lv-2-Sheet-Sheet.png" id="4_kgfne"]
+[ext_resource type="Texture2D" uid="uid://cnorqcylbhkpd" path="res://assets/sprites/cat_cart-lv-3-Sheet.png" id="5_l4xcy"]
+[ext_resource type="Texture2D" uid="uid://y3j21gtytehs" path="res://assets/sprites/cat_cart-lv-4-Sheet-Sheet.png" id="6_cg5jj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpb8a"]
 atlas = ExtResource("1_5rbhi")
@@ -18,6 +21,30 @@ region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4xcy"]
 atlas = ExtResource("2_f23pw")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4uyh"]
+atlas = ExtResource("4_kgfne")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo8pa"]
+atlas = ExtResource("4_kgfne")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nweva"]
+atlas = ExtResource("5_l4xcy")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4rvo"]
+atlas = ExtResource("5_l4xcy")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diwbi"]
+atlas = ExtResource("6_cg5jj")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxs8m"]
+atlas = ExtResource("6_cg5jj")
 region = Rect2(64, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ga5kc"]
@@ -43,6 +70,39 @@ animations = [{
 "loop": 1,
 "name": &"cat-bob",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4uyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo8pa")
+}],
+"loop": 1,
+"name": &"cat-bob-2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nweva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4rvo")
+}],
+"loop": 1,
+"name": &"cat-bob-3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diwbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxs8m")
+}],
+"loop": 1,
+"name": &"cat-bob-4",
+"speed": 5.0
 }]
 
 [node name="cat" type="Sprite2D" unique_id=730545293]
@@ -51,5 +111,6 @@ script = ExtResource("1_f23pw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1261951668]
 position = Vector2(-27, -11)
 sprite_frames = SubResource("SpriteFrames_ga5kc")
-animation = &"cat-bob"
-frame_progress = 0.019188913
+animation = &"cat-bob-4"
+frame = 1
+frame_progress = 0.060555425

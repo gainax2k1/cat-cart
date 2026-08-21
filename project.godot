@@ -18,9 +18,13 @@ config/icon="res://icon.svg"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="uid://djb3y5pg0ygf4"
 window/canvas_textures/default_texture_filter=0
+
+[gui]
+
+theme/custom_font="uid://c8c8cnmlpk3w0"
 
 [physics]
 
@@ -30,4 +34,5 @@ window/canvas_textures/default_texture_filter=0
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0.52677673, 0.56235486, 0.9274365, 1)
+environment/defaults/default_clear_color=Color(0.72969115, 0.64452326, 0.9588956, 1)
+2d/snap/snap_2d_transforms_to_pixel=true

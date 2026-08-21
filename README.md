@@ -9,3 +9,7 @@ Game for WildJam 96
 	My first game jam, and my first independent game with Godot, so my goal is 
 	to just get anything done that works! Even if it doesn't do what I want by 
 	deadline, I'm already learning so much. 
+	
+# Software/Assets:
+	"Karmic Arcade" by Vic Fieger
+		- https://www.1001fonts.com/users/vicfieger/

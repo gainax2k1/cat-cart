@@ -3,7 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://ccye7a0xdcj46" path="res://scene/cat.tscn" id="1_5kiuu"]
 [ext_resource type="Script" uid="uid://vxviwotm8wlv" path="res://scripts/game_manager.gd" id="1_xwcet"]
 [ext_resource type="Texture2D" uid="uid://c8k5vf3ul2mhs" path="res://assets/sprites/ground_measured-Sheet.png" id="2_33cqm"]
+[ext_resource type="Texture2D" uid="uid://dq8sjmxybk1ub" path="res://assets/sprites/charge.png" id="3_p1ry8"]
+[ext_resource type="FontFile" uid="uid://bsua5tr872rrg" path="res://assets/fonts/HomeVideo-Bold.otf" id="3_qpk70"]
 [ext_resource type="Texture2D" uid="uid://dn2xa0do5kyaq" path="res://assets/sprites/ground_plain-Sheet.png" id="3_xwcet"]
+[ext_resource type="Texture2D" uid="uid://efopbqabdkli" path="res://assets/sprites/release.png" id="4_xlg7c"]
+
+[sub_resource type="Theme" id="Theme_p1ry8"]
+
+[sub_resource type="FontVariation" id="FontVariation_xlg7c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xwcet"]
+
+[sub_resource type="FontVariation" id="FontVariation_p1ry8"]
+
+[sub_resource type="SystemFont" id="SystemFont_qpk70"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xlg7c"]
+font = SubResource("SystemFont_qpk70")
+font_size = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1ry8"]
 texture = ExtResource("2_33cqm")
@@ -27,6 +44,7 @@ sources/0 = SubResource("TileSetAtlasSource_p1ry8")
 sources/1 = SubResource("TileSetAtlasSource_xlg7c")
 
 [node name="game" type="Node2D" unique_id=1273546714]
+metadata/_edit_vertical_guides_ = [-117.0]
 
 [node name="game" type="Node" parent="." unique_id=304573520]
 unique_name_in_owner = true
@@ -37,13 +55,21 @@ position = Vector2(-24, 0)
 
 [node name="Camera2D" type="Camera2D" parent="game/cat" unique_id=398515756]
 position = Vector2(23, 1)
+scale = Vector2(1, 1.0146964)
 zoom = Vector2(4, 4)
 
 [node name="ChargeLabel" type="Label" parent="game/cat/Camera2D" unique_id=1625627295]
-offset_left = -57.0
-offset_top = -59.0
-offset_right = 20.0
-offset_bottom = -36.0
+texture_filter = 1
+offset_left = -53.999992
+offset_top = -73.0
+offset_right = 23.000008
+offset_bottom = -50.0
+scale = Vector2(1.3960248, 0.73027515)
+theme_override_colors/font_color = Color(0.97, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_qpk70")
+theme_override_font_sizes/font_size = 12
 text = "CHARGE"
 
 [node name="DistanceLabel" type="Label" parent="game/cat/Camera2D" unique_id=2092454316]
@@ -51,36 +77,65 @@ offset_left = -67.0
 offset_top = 15.0
 offset_right = 109.0
 offset_bottom = 38.0
+scale = Vector2(1.1021501, 1.1021501)
+theme = SubResource("Theme_p1ry8")
+theme_override_fonts/font = SubResource("FontVariation_xlg7c")
+theme_override_font_sizes/font_size = 10
 text = "DISTANCE"
+label_settings = SubResource("LabelSettings_xwcet")
 
 [node name="RecordLabel" type="Label" parent="game/cat/Camera2D" unique_id=133613832]
-offset_left = 24.0
-offset_top = 51.0
-offset_right = 64.0
-offset_bottom = 74.0
+offset_left = 44.0
+offset_top = -59.0
+offset_right = 84.0
+offset_bottom = -36.0
+scale = Vector2(1.1194106, 0.8868561)
+theme_override_fonts/font = SubResource("FontVariation_p1ry8")
+theme_override_font_sizes/font_size = 10
 text = "Record"
+label_settings = SubResource("LabelSettings_xlg7c")
+justification_flags = 162
 
 [node name="reset" type="Button" parent="game/cat/Camera2D" unique_id=2040923651]
-offset_left = -141.0
-offset_top = 16.0
-offset_right = -93.0
-offset_bottom = 47.0
-text = "reset
+offset_left = -133.0
+offset_top = 51.0
+offset_right = -68.0
+offset_bottom = 82.0
+scale = Vector2(0.6661779, 0.2650638)
+text = "Restart
+
 "
 
+[node name="levels" type="RichTextLabel" parent="game/cat/Camera2D" unique_id=878919612]
+offset_left = -67.0
+offset_top = 42.999992
+offset_right = -7.687729
+offset_bottom = 63.741882
+scale = Vector2(1.4073553, 1.1172792)
+theme_override_font_sizes/normal_font_size = 7
+text = "Cat level"
+fit_content = true
+scroll_active = false
+justification_flags = 162
+
 [node name="charge" type="Button" parent="game" unique_id=991398114]
-offset_left = -123.0
-offset_top = -67.0
-offset_right = -58.0
-offset_bottom = -36.0
-text = "charge!"
+offset_left = -117.00001
+offset_top = -60.999996
+offset_right = -45.000008
+offset_bottom = -29.999996
+scale = Vector2(0.669763, 0.8913963)
+icon = ExtResource("3_p1ry8")
+flat = true
+icon_alignment = 1
 
 [node name="release" type="Button" parent="game" unique_id=750383420]
-offset_left = -123.0
-offset_top = -36.0
-offset_right = -54.0
-offset_bottom = -5.0
-text = "release!"
+offset_left = -117.0
+offset_top = -45.0
+offset_right = -45.0
+offset_bottom = -14.0
+scale = Vector2(0.66361785, 0.92701083)
+icon = ExtResource("4_xlg7c")
+flat = true
 
 [node name="GroundMeasuredSheet" type="Sprite2D" parent="." unique_id=1341486555]
 texture_repeat = 2
@@ -96,5 +151,9 @@ tile_map_data = PackedByteArray("AAD//wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD9/wAAAQAAAAA
 tile_set = SubResource("TileSet_ga5kc")
 
 [connection signal="pressed" from="game/cat/Camera2D/reset" to="game" method="_on_reset_pressed"]
+[connection signal="button_down" from="game/charge" to="game" method="_on_charge_button_down"]
+[connection signal="button_up" from="game/charge" to="game" method="_on_charge_button_up"]
 [connection signal="pressed" from="game/charge" to="game" method="_on_charge_pressed"]
+[connection signal="button_down" from="game/release" to="game" method="_on_release_button_down"]
+[connection signal="button_up" from="game/release" to="game" method="_on_release_button_up"]
 [connection signal="pressed" from="game/release" to="game" method="_on_release_pressed"]
