@@ -1,12 +1,15 @@
 extends Node
 
 var record_score = 0
+var total_score_counter = 0
+
 var max_meter = 50
 var meter = 0.0 #starting charge
 var meter_drain_rate = 10
+var meter_ticker = 0.0
+
 var speed_drain_rate = .9
 var start_speed = 0
-var meter_ticker = 0.0
 var speed_ticker = 0.0
 
 var is_charging = false
@@ -18,6 +21,12 @@ var delta_cat = 0.0 #change in cat position in pixels (cat.speed * delta)
 @onready var charge_label = $cat/Camera2D/ChargeLabel
 @onready var record_label = $cat/Camera2D/RecordLabel
 
+var unlock_thresholds = [0, 1500, 5000, 10000]
+var unlocks = {
+	"Meter Lvl.": [50, 75, 100, 125],
+	"Drain Lvl.": [10, 9, 8, 7],
+	}
+
 func _ready() -> void:
 	# Set up input, needs work, pointer not visible?
 	
@@ -25,7 +34,7 @@ func _ready() -> void:
 	
 	is_charging = true
 	is_moving = false
-	
+	#check_unlocks()
 	update_ui()
 
 func _on_charge_pressed():
@@ -42,6 +51,7 @@ func _on_release_pressed():
 	release_cat()
 
 func _on_reset_pressed():
+	total_score_counter += cat.distance_traveled
 	cat.position = cat.START_POS
 	cat.distance_traveled = 0.0
 	meter = 0.0
@@ -109,10 +119,25 @@ func update_cat_position(delta):
 	update_ui()
 
 func check_unlocks():
-	if record_score >= 900:
-		max_meter = int(max_meter * 1.25)
-		print("Max meter upgraded!")
-	if record_score >= 1750:
-		print("Meter drain rate reduce!")
-		meter_drain_rate = meter_drain_rate * .95
+	var mtr_vals = 0
+	var dr_vals = 0
+	
+	for lock_lvl in len(unlock_thresholds):	
+		if not total_score_counter > unlock_thresholds[lock_lvl]:
+			print("total distance: " + str(total_score_counter))
+			print("lock_lvl is:" + str(lock_lvl) + " Threshold: " + str(unlock_thresholds[lock_lvl]))
+			mtr_vals = unlocks["Meter Lvl."]
+			print("mtr_vals: " + str(mtr_vals))
+			print("mtr_vals[lock_lvl]: " + str(mtr_vals[lock_lvl]))
+			max_meter = mtr_vals[lock_lvl]
+			
+			dr_vals = unlocks["Drain Lvl."]
+			print("dr_Vals: " + str(dr_vals))
+			print("dr_vals[lock_lvl]: " + str(dr_vals[lock_lvl]) )
+			meter_drain_rate = dr_vals[lock_lvl]
+			
+			for unlock in unlocks:
+				print("Level: " + str(lock_lvl) + " " + unlock + str(unlocks[unlock][lock_lvl]))
+			
+			return
 	
