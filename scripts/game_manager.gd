@@ -3,6 +3,8 @@ extends Node
 var record_score = 0
 var total_score_counter = 0
 var level = 0
+var next_unlock_at = 0
+
 
 var max_meter = 50
 var meter = 0.0 #starting charge
@@ -22,6 +24,8 @@ var delta_cat = 0.0 #change in cat position in pixels (cat.speed * delta)
 @onready var charge_label = $cat/Camera2D/ChargeLabel
 @onready var record_label = $cat/Camera2D/RecordLabel
 @onready var levels_label = $cat/Camera2D/levels
+@onready var total_label = $cat/Camera2D/TotalLabel
+@onready var next_label = $cat/Camera2D/NextUnlockLabel
 
 var unlock_thresholds = [0, 1500, 5000, 10000]
 var unlocks = {
@@ -100,7 +104,12 @@ func update_ui():
 	distance_label.text = "Distance: " + str(int(cat.distance_traveled))
 	record_label.text = "Record: " + str(int(record_score))
 	levels_label.text = "Cat Lvl: " + str(level) 
-	
+	total_label.text = "Total: " + str(total_score_counter)
+	if level < 3:
+		next_label.text = "Next unlock in: " + str(next_unlock_at)
+	else:
+		next_label.text = "EVERYTHING UNLOCKED!!1!"
+		
 func release_cat():
 	is_charging = false
 	cat.speed = meter
@@ -161,6 +170,8 @@ func check_unlocks():
 			print("mtr_vals: " + str(mtr_vals))
 			print("mtr_vals[lock_lvl]: " + str(mtr_vals[lock_lvl]))
 			max_meter = mtr_vals[lock_lvl]
+			next_unlock_at = unlock_thresholds[lock_lvl+1]-total_score_counter
+			print("next_unlock: " + str(next_unlock_at))
 			
 			dr_vals = unlocks["Drain Lvl."]
 			print("dr_Vals: " + str(dr_vals))

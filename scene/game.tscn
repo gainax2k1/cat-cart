@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dq8sjmxybk1ub" path="res://assets/sprites/charge.png" id="3_p1ry8"]
 [ext_resource type="FontFile" uid="uid://bsua5tr872rrg" path="res://assets/fonts/HomeVideo-Bold.otf" id="3_qpk70"]
 [ext_resource type="Texture2D" uid="uid://dn2xa0do5kyaq" path="res://assets/sprites/ground_plain-Sheet.png" id="3_xwcet"]
+[ext_resource type="Script" uid="uid://dnoxi588tbp42" path="res://scene/lines.gd" id="4_ll5lq"]
 [ext_resource type="Texture2D" uid="uid://efopbqabdkli" path="res://assets/sprites/release.png" id="4_xlg7c"]
 
 [sub_resource type="Theme" id="Theme_p1ry8"]
@@ -60,10 +61,10 @@ zoom = Vector2(4, 4)
 
 [node name="ChargeLabel" type="Label" parent="game/cat/Camera2D" unique_id=1625627295]
 texture_filter = 1
-offset_left = -53.999992
-offset_top = -73.0
-offset_right = 23.000008
-offset_bottom = -50.0
+offset_left = -111.99999
+offset_top = -73.00001
+offset_right = -63.290264
+offset_bottom = -50.000008
 scale = Vector2(1.3960248, 0.73027515)
 theme_override_colors/font_color = Color(0.97, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
@@ -76,8 +77,8 @@ text = "CHARGE"
 offset_left = -67.0
 offset_top = 15.0
 offset_right = 109.0
-offset_bottom = 38.0
-scale = Vector2(1.1021501, 1.1021501)
+offset_bottom = 31.787518
+scale = Vector2(1.159265, 0.63281703)
 theme = SubResource("Theme_p1ry8")
 theme_override_fonts/font = SubResource("FontVariation_xlg7c")
 theme_override_font_sizes/font_size = 10
@@ -85,10 +86,10 @@ text = "DISTANCE"
 label_settings = SubResource("LabelSettings_xwcet")
 
 [node name="RecordLabel" type="Label" parent="game/cat/Camera2D" unique_id=133613832]
-offset_left = 44.0
-offset_top = -59.0
-offset_right = 84.0
-offset_bottom = -36.0
+offset_left = 24.999996
+offset_top = -71.81174
+offset_right = 65.0
+offset_bottom = -48.811737
 scale = Vector2(1.1194106, 0.8868561)
 theme_override_fonts/font = SubResource("FontVariation_p1ry8")
 theme_override_font_sizes/font_size = 10
@@ -96,13 +97,31 @@ text = "Record"
 label_settings = SubResource("LabelSettings_xlg7c")
 justification_flags = 162
 
+[node name="TotalLabel" type="Label" parent="game/cat/Camera2D" unique_id=657825837]
+offset_left = 13.0
+offset_top = -61.10202
+offset_right = 53.0
+offset_bottom = -46.10202
+theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+theme_override_font_sizes/font_size = 8
+text = "Total"
+
+[node name="NextUnlockLabel" type="Label" parent="game/cat/Camera2D" unique_id=1779468333]
+offset_left = 14.0
+offset_top = -53.217884
+offset_right = 134.0
+offset_bottom = -38.217884
+theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+theme_override_font_sizes/font_size = 8
+text = "next unlock at: "
+
 [node name="reset" type="Button" parent="game/cat/Camera2D" unique_id=2040923651]
 offset_left = -133.0
 offset_top = 51.0
 offset_right = -68.0
 offset_bottom = 82.0
-scale = Vector2(0.6661779, 0.2650638)
-text = "Restart
+scale = Vector2(0.49631467, 0.45121408)
+text = "Next Run
 
 "
 
@@ -111,12 +130,41 @@ offset_left = -67.0
 offset_top = 42.999992
 offset_right = -7.687729
 offset_bottom = 63.741882
-scale = Vector2(1.4073553, 1.1172792)
+scale = Vector2(2.112206, 1.6768501)
+theme_override_colors/default_color = Color(0.74533343, 0, 0.86, 1)
 theme_override_font_sizes/normal_font_size = 7
 text = "Cat level"
 fit_content = true
 scroll_active = false
+tab_size = 2
 justification_flags = 162
+
+[node name="Lines" type="Node2D" parent="game/cat" unique_id=1018937491]
+script = ExtResource("4_ll5lq")
+
+[node name="1Blue" type="Line2D" parent="game/cat/Lines" unique_id=1730248805]
+position = Vector2(-50, -13)
+width = 3.0
+default_color = Color(0.3882353, 0.60784316, 1, 1)
+
+[node name="2Pink" type="Line2D" parent="game/cat/Lines" unique_id=180282443]
+position = Vector2(-51, -10)
+width = 3.0
+default_color = Color(0.99607843, 0.5058824, 0.9607843, 1)
+
+[node name="3White" type="Line2D" parent="game/cat/Lines" unique_id=1030935064]
+position = Vector2(-53, -7)
+width = 3.0
+
+[node name="4Pink" type="Line2D" parent="game/cat/Lines" unique_id=1462238712]
+position = Vector2(-52, -4)
+width = 3.0
+default_color = Color(0.9647059, 0.52156866, 0.9607843, 1)
+
+[node name="5Blue" type="Line2D" parent="game/cat/Lines" unique_id=1849797961]
+position = Vector2(-50, -1)
+width = 3.0
+default_color = Color(0.3882353, 0.60784316, 1, 1)
 
 [node name="charge" type="Button" parent="game" unique_id=991398114]
 offset_left = -117.00001

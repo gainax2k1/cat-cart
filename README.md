@@ -11,5 +11,8 @@ Game for WildJam 96
 	deadline, I'm already learning so much. 
 	
 # Software/Assets:
-	"Karmic Arcade" by Vic Fieger
+	"Karmic Arcade" font by Vic Fieger
 		- https://www.1001fonts.com/users/vicfieger/
+	
+ 	"Rainbow Trail Effect" code by Khalid Abuhakmeh
+		- https://www.jetbrains.com/guide/gamedev/tutorials/godot-rainbow-trails/
