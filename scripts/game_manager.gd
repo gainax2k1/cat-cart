@@ -26,18 +26,19 @@ var delta_cat = 0.0 #change in cat position in pixels (cat.speed * delta)
 @onready var levels_label = $cat/Camera2D/levels
 @onready var total_label = $cat/Camera2D/TotalLabel
 @onready var next_label = $cat/Camera2D/NextUnlockLabel
+@onready var unlock_graphic = %NewUnlock
 
-var unlock_thresholds = [0, 1500, 5000, 10000]
+var unlock_thresholds = [0, 3000, 15000, 20000]
 var unlocks = {
-	"Meter Lvl.": [50, 75, 100, 125],
-	"Drain Lvl.": [10, 9, 8, 7],
+	"Meter Lvl.": [50, 100, 150, 250],
+	"Drain Lvl.": [10, 8, 5, .1],
 	}
 
 func _ready() -> void:
 	# Set up input, needs work, pointer not visible?
 	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	unlock_graphic.visible =false
 	is_charging = true
 	is_moving = false
 	#check_unlocks()
@@ -85,13 +86,14 @@ func _on_release_button_up() -> void:
 
 func _on_reset_pressed():
 	total_score_counter += int(cat.distance_traveled)
+	check_unlocks()
 	cat.position = cat.START_POS
 	cat.distance_traveled = 0.0
 	meter = 0.0
 	is_charging = true
 	is_moving = false
 	cat._animated_sprite.play("cat-blink")
-	check_unlocks()
+	unlock_graphic.visible = false
 	update_ui()
 	
 
@@ -108,7 +110,7 @@ func update_ui():
 	if level < 3:
 		next_label.text = "Next unlock in: " + str(next_unlock_at)
 	else:
-		next_label.text = "EVERYTHING UNLOCKED!!1!"
+		next_label.text = "MAXIMUM CAT!!!1!"
 		
 func release_cat():
 	is_charging = false
@@ -151,19 +153,30 @@ func update_cat_position(delta):
 			cat._animated_sprite.pause()
 			if level == 0:
 				cat._animated_sprite.play("cat-blink")
-		
-		cat.position += Vector2(delta_cat, 0)
+			if cat.distance_traveled >= next_unlock_at and level < 3:
+				unlock_graphic.visible =true
+				wait(5)
+				
+		if level >= 3:
+			cat.position += Vector2(delta_cat, 0)
+			cat.position.y = 40 * sin(cat.distance_traveled* .01)
+		else:
+			cat.position += Vector2(delta_cat, 0)
 		cat.distance_traveled += delta_cat
 			
 	update_ui()
-
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
+	
 func check_unlocks():
 	var mtr_vals = 0
 	var dr_vals = 0
+	
 	print("Thresholds: " + str(unlock_thresholds))
 	for lock_lvl in len(unlock_thresholds)-1:	
 		
 		if  (total_score_counter < unlock_thresholds[lock_lvl+1]) or ((lock_lvl + 1) > len(unlock_thresholds)):
+			level = lock_lvl + 1
 			print("total distance: " + str(total_score_counter))
 			print("lock_lvl is:" + str(lock_lvl) + " Threshold: " + str(unlock_thresholds[lock_lvl]))
 			mtr_vals = unlocks["Meter Lvl."]
@@ -177,7 +190,7 @@ func check_unlocks():
 			print("dr_Vals: " + str(dr_vals))
 			print("dr_vals[lock_lvl]: " + str(dr_vals[lock_lvl]) )
 			meter_drain_rate = dr_vals[lock_lvl]
-			level = lock_lvl + 1
+			
 			
 			for unlock in unlocks:
 				print("Level: " + str(lock_lvl) + " " + unlock + str(unlocks[unlock][lock_lvl]))

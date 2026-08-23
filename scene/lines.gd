@@ -2,7 +2,7 @@ extends Node2D
 
 var lines: Array[Line2D]
 
-@export var max_points = 20 
+@export var max_points = 500 
 @onready var game_manager = %game
 
 
