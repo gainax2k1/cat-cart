@@ -11,8 +11,13 @@ Game for WildJam 96
 	deadline, I'm already learning so much. 
 	
 # Software/Assets:
-	"Karmic Arcade" font by Vic Fieger
-		- https://www.1001fonts.com/users/vicfieger/
+	All code, graphics, and assets by me except where listed below:
+		
+	Graphics made using Aseprite
+		- https://www.aseprite.org/
+		
+	"HomeVideo" font by GGBotNet
+		- https://www.1001fonts.com/home-video-font.html
 	
  	"Rainbow Trail Effect" code by Khalid Abuhakmeh
 		- https://www.jetbrains.com/guide/gamedev/tutorials/godot-rainbow-trails/
